@@ -18,6 +18,13 @@ class CreateGroupTable extends Migration
             $table->string('name', 50);
             $table->timestamps();
         });
+
+        DB::table('group')->insert([
+            ['name' => 'Friends'],
+            ['name' => 'Family'],
+            ['name' => 'Work'],
+            ['name' => 'Food'] 
+        ]);
     }
 
     /**

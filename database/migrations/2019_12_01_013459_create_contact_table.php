@@ -15,13 +15,13 @@ class CreateContactTable extends Migration
     {
         Schema::create('contact', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('group_id');
-            $table->string('first_name', 20);
-            $table->string('last_name', 20);
+            $table->unsignedInteger('group_id');
+            $table->string('first_name', 30);
+            $table->string('last_name', 30);
             $table->longText('address');
-            $table->string('city', 20);
-            $table->integer('zip', 10);
-            $table->string('country', 20);
+            $table->string('city', 50);
+            $table->integer('zip')->unsigned();
+            $table->string('country', 50);
             $table->text('email');
             $table->string('phone', 25);
             $table->longText('note')->nullable();
@@ -30,7 +30,8 @@ class CreateContactTable extends Migration
 
             $table->foreign('group_id')
                   ->references('id')
-                  ->on('group');
+                  ->on('group')
+                  ->delete('cascade');
 
             $table->index('group_id');
         });
